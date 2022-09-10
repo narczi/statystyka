@@ -36,6 +36,49 @@ t.test(x, mu = 250, alternative = "less")
 library(UsingR)
 head(homework)
 
+#Kroki: 
+#1. niezaleznosc, 
+#2. normalnosc, 
+#3. rownosc wariancji, 
+#4. glowny test t-studenta
+
 # 1.Czy nasz proby sa niezalezne? - Tak, bo to sa dwie rozne szkoly i rozni uczniowie.
 # 2. Rysujemy sobie boxplota
 boxplot(homework)
+
+shapiro.test(homework$Private)
+#p-value jest wieksza niz 0,05 wiec mamy normalnosc
+
+shapiro.test(homework$Public)
+#p-value jest wieksza niz 0,05 wiec mamy normalnosc
+
+#test F-Snedcora
+var(homework$Private)
+var(homework$Public)
+
+var.test(homework$Private, homework$Public, alternative = "less")
+
+#Hipoteza alternatywna w tescie F-Snedcora 
+#h1: sigma_1^2 < sigma_2^2
+
+#p-value = 0.35 czyli brak podstaw zeby odrzucic h0 (czyli mamy rownosc wariancji)
+
+t.test(homework$Private, homework$Public,
+       var.equal = TRUE, alternative = "greater") 
+
+#odrzucamy h0, bo p-value jest mniejsze niz 0,05
+
+
+# Test t-studenta dla prob zaleznych HIPNOZA
+
+a <- c(6.6, 6.5, 9.0, 10.3, 11.3, 8.1, 6.3, 11.6)
+b <- c(6.8, 2.5, 7.4, 8.5, 8.1, 6.1, 3.4, 2.0)
+boxplot(a, b)
+
+shapiro.test(a)
+shapiro.test(b)
+
+#hipoteza alternatywna
+mean(a)
+mean(b)
+t.test(a,b, alternative = 'greater', paired = TRUE)
