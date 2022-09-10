@@ -1,5 +1,5 @@
 #3.3 Przyklady 3 
-#Przyklad 1 ilosciowa dyskretna
+#Przyklad 1 Liczba bledow na tescie - ilosciowa dyskretna
 
 liczba_bledow <- c(1, 1, 2, 0, 1, 3, 1, 4, 4, 4, 0, 1, 0, 0, 0, 2, 3,
                    4, 0, 1, 5, 2, 3, 5, 3, 2, 2, 4, 0, 2, 2, 0, 2, 2,
@@ -32,7 +32,7 @@ sd(liczba_bledow)
 sd(liczba_bledow) / mean(liczba_bledow) * 100
 
 
-#Przyklad 2 ilosciowa ciagla
+#Przyklad 2 Hamulce - ilosciowa ciagla
 hamulce <- read.table("http://ls.home.amu.edu.pl/data_sets/hamulce.txt", dec = ",")
 
 (breaks_hist <- hist(hamulce$V1, plot = FALSE)$breaks)
@@ -45,3 +45,11 @@ hist(hamulce$V1,
      xlab="Dlugosc drogi hamowania",
      main="Rozklad empiryczny dlugosci drogi hamowania")
 rug(jitter(hamulce$V1))
+
+#wykres ramkowy
+boxplot(hamulce$V1, ylab = "Dlugosc drogi hamowania",
+        main = "Rozklad empiryczny dlugosci drogi hamowania")
+
+library(e1071)
+skewness(hamulce$V1)
+kurtosis(hamulce$V1)
