@@ -82,3 +82,10 @@ shapiro.test(b)
 mean(a)
 mean(b)
 t.test(a,b, alternative = 'greater', paired = TRUE)
+
+# 3. Test Welcha nie zaklada rownosci wariancji
+
+# 4. Test Manna-Whitneya Wilcoxona
+# nie wymaga normalnosci, wiec jest testem nieparametrycznym
+# Tworzymy rangi
+# 1. Najpierw sortujemy obserwacje w probie
